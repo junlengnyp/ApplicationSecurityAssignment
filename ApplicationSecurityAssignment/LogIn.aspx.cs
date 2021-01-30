@@ -162,7 +162,6 @@ namespace ApplicationSecurityAssignment
                                             Session["LogInAttempt" + userid] = intAttempt;
                                             if (intAttempt < 0)
                                             {
-                                                string h = null;
                                                 SqlConnection connection = new SqlConnection(MYDBConnectionString);
                                                 string sql = "UPDATE Account SET accountLockout = 1 WHERE emailaddress=@emailaddress";
                                                 SqlCommand command = new SqlCommand(sql, connection);
