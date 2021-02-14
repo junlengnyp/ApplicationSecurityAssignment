@@ -22,7 +22,6 @@ namespace ApplicationSecurityAssignment
         string MYDBConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["MYDBConnection"].ConnectionString;
         static string finalHash;
         static string salt;
-        int failedLogin = 0;
         byte[] Key;
         byte[] IV;
 
@@ -61,7 +60,7 @@ namespace ApplicationSecurityAssignment
             {
                 using (SqlConnection con = new SqlConnection(MYDBConnectionString))
                 {
-                    using (SqlCommand cmd = new SqlCommand("INSERT INTO dbo.Account VALUES(@firstname,@lastname,@creditcard,@emailaddress,@passwordhash,@passwordsalt,@dob)"))
+                    using (SqlCommand cmd = new SqlCommand("INSERT INTO dbo.Account VALUES(@firstname,@lastname,@creditcard,@emailaddress,@passwordhash,@passwordsalt,@dob,@accountLockout,@recovery,@key,@iv,@datetime)"))
                     {
                         using (SqlDataAdapter sda = new SqlDataAdapter())
                         {
@@ -73,6 +72,12 @@ namespace ApplicationSecurityAssignment
                             cmd.Parameters.AddWithValue("@passwordhash", finalHash);
                             cmd.Parameters.AddWithValue("@passwordsalt", salt);
                             cmd.Parameters.AddWithValue("@dob", tb_dob.Text.Trim());
+                            cmd.Parameters.AddWithValue("accountLockout", 0);
+                            cmd.Parameters.AddWithValue("@recovery", tb_recovery.Text.Trim());
+                            cmd.Parameters.AddWithValue("@key", Key);
+                            cmd.Parameters.AddWithValue("@iv", IV);
+                            cmd.Parameters.AddWithValue("@datetime", DateTime.Now);
+
                             cmd.Connection = con;
                             con.Open();
                             cmd.ExecuteNonQuery();
@@ -87,7 +92,6 @@ namespace ApplicationSecurityAssignment
             }
             Response.Redirect("Login.aspx");
         }
-
 
 
         private int checkPassword(string password)
@@ -154,8 +158,6 @@ namespace ApplicationSecurityAssignment
                 return;
             }
             lbl_pwdchecker.ForeColor = Color.Green;
-
-
 
             string pwd = tb_password.Text.ToString().Trim(); ;
             //Generate random "salt"

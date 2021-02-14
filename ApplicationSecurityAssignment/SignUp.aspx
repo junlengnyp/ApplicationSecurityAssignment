@@ -36,6 +36,7 @@
             document.getElementById("lbl_pwdsuggestion").innerHTML = "Password is very strong!.";
             document.getElementById("lbl_pwdsuggestion").style.color = "Green";
         }
+
     </script>
 </head>
 <body>
@@ -43,31 +44,35 @@
         <div>
             <fieldset>
             <asp:Label ID="lbl_firstname" runat="server" Text="First Name: "></asp:Label>
-            <asp:TextBox ID="tb_firstname" runat="server"></asp:TextBox>
+            <asp:TextBox ID="tb_firstname" runat="server" required="true"></asp:TextBox>
             <br />
             <br />
             <asp:Label ID="lbl_lastname" runat="server" Text="Last Name: "></asp:Label>
-            <asp:TextBox ID="tb_lastname" runat="server"></asp:TextBox>
+            <asp:TextBox ID="tb_lastname" runat="server" required="true"></asp:TextBox>
             <br />
             <br />
             <asp:Label ID="lbl_creditCard" runat="server" Text="Credit Card Info: "></asp:Label>
-            <asp:TextBox ID="tb_creditCard" runat="server"></asp:TextBox>
+            <asp:TextBox ID="tb_creditCard" runat="server" TextMode="Number"  required="true"></asp:TextBox>
             <br />
             <br />
             <asp:Label ID="lbl_emailaddress" runat="server" Text="Email Address: "></asp:Label>
-            <asp:TextBox ID="tb_emailaddress" runat="server"></asp:TextBox>
+            <asp:TextBox ID="tb_emailaddress" runat="server" TextMode="Email" required="true"></asp:TextBox>
             <br />
             <br />
             <asp:Label ID="lbl_password" runat="server" Text="Password: "></asp:Label>
-            <asp:TextBox ID="tb_password" runat="server" TextMode ="Password" autocomplete ="off" onkeyup ="javascript:validate()"></asp:TextBox>
+            <asp:TextBox ID="tb_password" runat="server" TextMode ="Password" autocomplete ="off" onkeyup ="javascript:validate()" required="true"></asp:TextBox>
             <br />
             <asp:Label ID="lbl_pwdsuggestion" runat="server" Text=""></asp:Label>
             <br />
             <asp:Label ID="lbl_pwdchecker" runat="server" Text=""></asp:Label>
             <br /> 
             <br />
-            <asp:Label ID="lbl_dob" runat="server" Text="Date Of Birth: "></asp:Label>
-            <asp:TextBox ID="tb_dob" runat="server"></asp:TextBox>
+            <asp:Label ID="lbl_dob" runat="server" Text="Date Of Birth:"></asp:Label>
+            <asp:TextBox ID="tb_dob" runat="server" TextMode="Date" required="true"></asp:TextBox>
+            <br />
+            <br />
+            <asp:Label ID="lbl_recovery" runat="server" Text="Recovery Key: "></asp:Label>
+            <asp:TextBox ID="tb_recovery" runat="server" required="true"></asp:TextBox>
             <br />
             <br />
             <asp:Button ID="signupbutton" runat="server" Text="Sign Up" OnClick="signupbutton_Click" />

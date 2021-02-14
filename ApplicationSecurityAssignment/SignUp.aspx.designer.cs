@@ -150,6 +150,24 @@ namespace ApplicationSecurityAssignment
         protected global::System.Web.UI.WebControls.TextBox tb_dob;
 
         /// <summary>
+        /// lbl_recovery control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_recovery;
+
+        /// <summary>
+        /// tb_recovery control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tb_recovery;
+
+        /// <summary>
         /// signupbutton control.
         /// </summary>
         /// <remarks>
